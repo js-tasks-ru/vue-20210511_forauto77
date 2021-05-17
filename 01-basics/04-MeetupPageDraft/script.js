@@ -45,3 +45,25 @@ const agendaItemIcons = {
 };
 
 // Требуется создать Vue приложение
+const app = new Vue({
+  el: '#app',
+  data() {
+    return {
+      rawMeetup: null
+    }
+  },
+
+  computed: {
+  },
+
+  mounted() {
+    fetch(`https://course-vue.javascript.ru/api/meetups/${MEETUP_ID}`)
+      .then(res => res.json())
+      .then(data => {
+        this.rawMeetup = data
+        this.image = getImageUrlByImageId(this.rawMeetup.imageId)
+      })    
+  }
+})
+
+app.$mount('#app');

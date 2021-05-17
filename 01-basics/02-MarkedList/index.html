@@ -12,14 +12,18 @@
 <body>
 
 <div id="app">
-  <input type="text" />
+  <input
+    type="text"
+    v-model="inputText"
+  />
   <ul>
-    <li>Email</li>
-    <li class="marked">Email</li>
-    <li class="marked">Email</li>
-    <li>Email</li>
-    <li>Email</li>
-    <li>...</li>
+    <li
+      v-for="(email, index) in emails"
+      :key="index"
+      :class="{marked: (inputText.length > 0 && email.toLowerCase().includes(inputText.toLowerCase()))}"
+    >
+      {{email}}
+    </li>
   </ul>
 </div>
 

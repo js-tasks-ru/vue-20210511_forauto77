@@ -6,6 +6,14 @@
 </head>
 <body>
 
+<div id="app">
+  <template v-for="i in 5">
+    <input type="radio" :id="i"
+    :value="i" v-model="picked">
+    <label :for="i">{{i}}</label>
+  </template> <br>
+  {{title}}
+</div>  
 <!-- Решение -->
 
 <script type="module" src="script.js"></script>
