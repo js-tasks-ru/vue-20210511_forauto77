@@ -20,7 +20,7 @@
     <li
       v-for="(email, index) in emails"
       :key="index"
-      :class="{marked: (inputText.length > 0 && email.toLowerCase().includes(inputText.toLowerCase()))}"
+      :class="{marked: (isMarked(email))}"
     >
       {{email}}
     </li>

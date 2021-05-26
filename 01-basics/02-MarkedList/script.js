@@ -37,6 +37,11 @@ const app = new Vue({
       inputText: '',
       emails
     }
+  },
+  methods: {
+    isMarked(email) {
+      return this.inputText.length > 0 && email.toLowerCase().includes(inputText.toLowerCase())
+    }
   }
 })
 
