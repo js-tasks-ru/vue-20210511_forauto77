@@ -18,11 +18,11 @@
   />
   <ul>
     <li
-      v-for="(email, index) in emails"
+      v-for="(email, index) in getEmails"
       :key="index"
-      :class="{marked: (isMarked(email))}"
+      :class="{'marked': email.filtered}"
     >
-      {{email}}
+      {{email.name}}
     </li>
   </ul>
 </div>

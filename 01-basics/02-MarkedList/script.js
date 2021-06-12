@@ -38,9 +38,12 @@ const app = new Vue({
       emails
     }
   },
-  methods: {
-    isMarked(email) {
-      return this.inputText.length > 0 && email.toLowerCase().includes(inputText.toLowerCase())
+  computed: {
+    getEmails() {
+      return this.emails.map((email) => ({
+        name: email,
+        filtered: email.toLowerCase().includes(this.inputText.toLowerCase()) && this.inputText !== ''
+      }))
     }
   }
 })
