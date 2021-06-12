@@ -45,3 +45,41 @@ const agendaItemIcons = {
 };
 
 // Требуется создать Vue приложение
+const app = new Vue({
+  el: '#app',
+  data() {
+    return {
+      rawMeetup: null
+    }
+  },
+
+  computed: {
+    image() {
+      return this.rawMeetup.imageId ? { '--bg-url': `url(${getImageUrlByImageId(this.rawMeetup.imageId)})` } : ''
+    },
+
+    meetups() {
+      if (!this.rawMeetup) {
+        return null
+      }
+
+      let meetups = Object.assign({}, this.rawMeetup);
+      meetups['agenda'] = meetups.agenda.map((ag) => ({
+        ...ag,
+        icon: `/assets/icons/icon-${agendaItemIcons[ag.type]}.svg`,
+        title: ag.title ? ag.title : agendaItemDefaultTitles[ag.type], 
+      }))
+      return meetups
+    }
+  },
+
+  mounted() {
+    fetch(`https://course-vue.javascript.ru/api/meetups/${MEETUP_ID}`)
+      .then(res => res.json())
+      .then(data => {
+        this.rawMeetup = data
+      })    
+  }
+})
+
+app.$mount('#app');
